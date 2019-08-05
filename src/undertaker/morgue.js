@@ -1,3 +1,96 @@
+const races = {
+
+};
+
+const backgrounds = {
+
+};
+
+const gods = {
+    zin: {
+        color: { r: 0x7b, g: 0xa6, b: 0xa4 } // #7BA6A4
+    },
+    "shining one": {
+        color: { r: 0xff, g: 0xb5, b: 0x00 } // #FFB500
+    },
+    kikubaaqudgha: {
+        color: { r: 0x70, g: 0x70, b: 0x70 } // #707070
+    },
+    yredelemnul: {
+        color: { r: 0x34, g: 0x19, b: 0x7e } // #34197E
+    },
+    xom: {
+        color: { r: 0xea, g: 0xea, b: 0xea } // #EAEAEA
+    },
+    vehumet: {
+        color: { r: 0x00, g: 0xff, b: 0xfd } // #00FFFD
+    },
+    okawaru: {
+        color: { r: 0x9e, g: 0xcc, b: 0xe0 } // #9ECCE0
+    },
+    makhleb: {
+        color: { r: 0x97, g: 0x00, b: 0x00 } // #970000
+    },
+    "sif muna": {
+        color: { r: 0x00, g: 0x00, b: 0xff } // #0000ff
+    },
+    trog: {
+        color: { r: 0xe2, g: 0x00, b: 0x00 } // #E20000
+    },
+    "nemelex xobeh": {
+        color: { r: 0x96, g: 0x00, b: 0xff } // #9600FF
+    },
+    elyvilon: {
+        color: { r: 0xd0, g: 0xd0, b: 0xd0 } // #D0D0D0
+    },
+    lugonu: {
+        color: { r: 0x36, g: 0x0e, b: 0xbb } // #360EBB
+    },
+    beogh: {
+        color: { r: 0xf2, g: 0xa2, b: 0x00 } // #F2A200
+    },
+    jiyva: {
+        color: { r: 0x00, g: 0x06, b: 0x10 } // #006100
+    },
+    fedhas: {
+        color: { r: 0x89, g: 0xb9, b: 0x00 } // #89B900
+    },
+    cheibriados: {
+        color: { r: 0xb6, g: 0xe7, b: 0x52 } // #B6E752
+    },
+    ashenzari: {
+        color: { r: 0xff, g: 0xb3, b: 0x70 } // #FFB370
+    },
+    dithmenos: {
+        color: { r: 0x5c, g: 0x00, b: 0xf2 } // #5C00F2
+    },
+    gozag: {
+        color: { r: 0xf2, g: 0xdb, b: 0x60 } // #F2DB60
+    },
+    qazlal: {
+        color: { r: 0x9a, g: 0xb6, b: 0xe1 } // #9AB6E1
+    },
+    ru: {
+        color: { r: 0x43, g: 0xae, b: 0xe1 } // #43AEE1
+    },
+    pakellas: {
+        color: { r: 0xb6, g: 0xad, b: 0x2d } // #B6AD2D
+    },
+    uskayaw: {
+        color: { r: 0xe3, g: 0xd0, b: 0x97 } // #E3D097
+    },
+    hepliaklqana: {
+        color: { r: 0x00, g: 0xa9, b: 0x8e } // #00A98E
+    },
+    "wu jian": {
+        color: { r: 0x79, g: 0x00, b: 0x00 } // #790000
+    },
+};
+
+const resistances = {
+
+};
+
 const branches = {
     dungeon: {
         depth: 15,
@@ -194,5 +287,9 @@ const branches = {
 };
 
 export {
-    branches
+    branches,
+    races,
+    backgrounds,
+    gods,
+    resistances
 }

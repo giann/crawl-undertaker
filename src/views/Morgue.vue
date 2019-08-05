@@ -1,52 +1,91 @@
 <template>
     <div class="morgue">
-        <h2>Milestones</h2>
-        <section v-if="morgue !== null" class="notes">
-            <div class="travel-path">
-                <svg width="64" :height="morgue.notes.length * 69">
-                    <g>
-                        <template v-for="(note, index) in morgue.notes">
-                            <path
-                                :key="`line-${index}`"
-                                :d="getLine(index)"
-                                class="note-line"
-                                :stroke="getBranchColor(note.location.branch, note.location.depth)"/>
-                        </template>
+        <template v-if="morgue !== null">
+            <section v-if="morgue.hiscore" class="hiscore">
+                <div class="hiscore">
+                    <span class="hiscore__score">{{ morgue.hiscore.points | formattedNumber }}</span>
+                    
+                    <div class="hiscore__info">
+                        <div class="hiscore__fullname">
+                            {{ morgue.stats.name }} {{ morgue.stats.title }}
+                        </div>
 
-                        <template v-for="(note, index) in morgue.notes">
-                            <circle
-                                :key="`node-${index}`"
-                                :cx="getBranchWidth(note.location.branch)*8"
-                                :cy="(index + 1) * 69"
-                                r="3"
-                                class="note-node"
-                                :fill="getBranchColor(note.location.branch, note.location.depth)"/>
-                            <image
-                                v-if="getBranchImage(index)"
-                                :key="`gateway-${index}`"
-                                :xlink:href="getBranchImage(index)"
-                                :x="getBranchWidth(note.location.branch)*8 - 8"
-                                :y="(index + 1) * 69 - 8"
-                                width="16" height="16"/>
-                        </template>
-                    </g>
-                </svg>
-            </div>
+                        <div class="hiscore__line">
+                            Began as a <span class="keyword race">{{ morgue.stats.species }} </span>
+                            <span class="keyword background">{{ morgue.stats.job }}</span>
+                            on <span class="date">{{ morgue.hiscore.birth }}</span>
+                        </div>
 
-            <div class="travel-notes">
-                <div class="note" v-for="(note, index) in morgue.notes" :key="index">
-                    <span class="note__turn">{{ note.turn }}</span>
-                    <span class="note__location" :style="`color: var(--${note.location.branch.toLowerCase()})`">{{ note.location.branch }}:{{ note.location.depth }}</span>
-                    <div class="note--value">{{ note.value }}</div>
+                        <div v-if="morgue.hiscore.godRank" class="hiscore__line">
+                            Was {{ morgue.hiscore.godRank }} of
+                            <span
+                                class="keyword god"
+                                :style="`color: ${getGodColor(morgue.stats.god.god)}`">{{ morgue.religion.god }}</span>
+                        </div>
+
+                        <div class="hiscore__line">
+                            {{ morgue.hiscore.deathDescription | capitalizeFirst }}
+                        </div>
+
+                        <div class="hiscore__line">
+                            On level {{ morgue.hiscore.location.depth }} of
+                            <span
+                                class="keyword branch"
+                                :style="`color: ${getBranchColor(morgue.hiscore.location.branch)}`">{{ morgue.hiscore.location.branchLong }}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <h2>Milestones</h2>
+            <section class="notes">
+                <div class="travel-path">
+                    <svg width="64" :height="morgue.notes.length * 69">
+                        <g>
+                            <template v-for="(note, index) in morgue.notes">
+                                <path
+                                    :key="`line-${index}`"
+                                    :d="getLine(index)"
+                                    class="note-line"
+                                    :stroke="getBranchColor(note.location.branch, note.location.depth)"/>
+                            </template>
+
+                            <template v-for="(note, index) in morgue.notes">
+                                <circle
+                                    :key="`node-${index}`"
+                                    :cx="getBranchWidth(note.location.branch) * 8"
+                                    :cy="37 + index * 69"
+                                    r="3"
+                                    class="note-node"
+                                    :fill="getBranchColor(note.location.branch, note.location.depth)"/>
+                                <image
+                                    v-if="getBranchImage(index)"
+                                    :key="`gateway-${index}`"
+                                    :xlink:href="getBranchImage(index)"
+                                    :x="getBranchWidth(note.location.branch)*8 - 8"
+                                    :y="37 + index * 69 - 8"
+                                    width="16" height="16"/>
+                            </template>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="travel-notes">
+                    <div class="note" v-for="(note, index) in morgue.notes" :key="index">
+                        <span class="note__turn">{{ note.turn }}</span>
+                        <span class="note__location" :style="`color: var(--${note.location.branch.toLowerCase()})`">{{ note.location.branch }}:{{ note.location.depth }}</span>
+                        <div class="note--value">{{ note.value }}</div>
+                    </div>
+                </div>
+            </section>
+        </template>
     </div>
 </template>
 
 <script>
-    import { branches } from "../undertaker/morgue.js";
+    import { branches, gods } from "../undertaker/morgue.js";
     import { darker } from "../undertaker/colors.js";
+    const numeral = require("numeral");
 
     export default {
         name: "Morgue",
@@ -55,6 +94,12 @@
             return {
                 morgue: null,
             }
+        },
+
+        filters: {
+            formattedNumber: (number) => numeral(number).format("0,0"),
+
+            capitalizeFirst: (string) => string[0].toUpperCase() + string.slice(1)
         },
 
         methods: {
@@ -67,12 +112,22 @@
             },
 
             getBranchColor(branch, depth) {
+                if (depth == undefined) {
+                    depth = 1;
+                }
+
                 branch = this.getBranch(branch);
                 let baseColor = branch.color;
                 let factor = 1 - (0.3 * (depth / branch.depth));
                 let color = darker(baseColor.r, baseColor.g, baseColor.b, factor);
 
                 return `rgb(${color.r}, ${color.g}, ${color.b})`;
+            },
+
+            getGodColor(god) {
+                let color = gods[god.toLowerCase()].color;
+
+                return `rgb(${color.r}, ${color.g}, ${color.b})`
             },
 
             getBranchImage(index) {
@@ -93,6 +148,9 @@
             },
 
             getLine(index) {
+                if (index == 0)
+                    return;
+
                 let previous = this.$data.morgue.notes[index-1]
                     ? this.$data.morgue.notes[index-1].location.branch
                     : null;
@@ -100,15 +158,17 @@
                 let previousW = previous ? this.getBranchWidth(previous) : null;
                 let currentW = this.getBranchWidth(current);
 
+                index--;
+
                 if (previous && previousW !== currentW) {
                     if (previousW > currentW) {
-                        return `M${previousW * 8},${index * 69} C${previousW * 8},${index * 69 + 69/2} ${currentW * 8},${index * 69 + 69/2} ${currentW * 8},${(index + 1) * 69}`;
+                        return `M${previousW * 8},${37 + (index * 69)} C${previousW * 8},${37 + (index * 69) + 69/2} ${currentW * 8},${37 + (index * 69) + 69/2} ${currentW * 8},${37 + (index + 1) * 69}`;
                     } else {
-                        return `M${previousW * 8},${index * 69} C${previousW * 8},${index * 69 + 69/2} ${currentW * 8},${index * 69 + 69/2} ${currentW * 8},${(index + 1) * 69}`;
+                        return `M${previousW * 8},${37 + (index * 69)} C${previousW * 8},${37 + (index * 69) + 69/2} ${currentW * 8},${37 + (index * 69) + 69/2} ${currentW * 8},${37 + (index + 1) * 69}`;
                     }
                 }
 
-                return `M${this.getBranchWidth(current)*8},${index * 69} L${this.getBranchWidth(current)*8},${(index+1) * 69}`;
+                return `M${this.getBranchWidth(current)*8},${37 + (index * 69)} L${this.getBranchWidth(current)*8},${37 + ((index+1) * 69)}`;
             }
         },
 
@@ -130,8 +190,6 @@
     }
 
     .travel-notes {
-        padding-top: 29px;
-
         .note {
             height: 59px;
             box-sizing: border-box;
@@ -189,5 +247,28 @@
 
     .note-value {
         padding-right: 0;
+    }
+
+    .hiscore__fullname {
+        font-size: 1.8em;
+        margin-bottom: 0.5em;
+        text-transfrom: capitalize;
+    }
+
+    .hiscore__score {
+        font-weight: bold;
+        font-size: 1.8em;
+        text-decoration: underline;
+
+        vertical-align: top;
+    }
+
+    .hiscore__line {
+        line-height: 1.5em;
+    }
+
+    .hiscore__info {
+        margin-left: 2em;
+        display: inline-block;
     }
 </style>

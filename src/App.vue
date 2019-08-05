@@ -22,5 +22,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+
+    max-width: 600px;
+    margin: 3em auto auto;
+}
+
+.keyword {
+    font-weight: bold;
 }
 </style>
