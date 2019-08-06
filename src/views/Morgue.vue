@@ -11,8 +11,8 @@
                         </div>
 
                         <div class="hiscore__line">
-                            Began as a <span class="keyword race">{{ morgue.stats.species }} </span>
-                            <span class="keyword background">{{ morgue.stats.job }}</span>
+                            Began as a <span class="keyword race" :style="`color: ${getRaceColor(morgue.stats.species)}`">{{ morgue.stats.species }} </span>
+                            <span class="keyword background" :style="`color: ${getBackgroundColor(morgue.stats.job)}`">{{ morgue.stats.job }}</span>
                             on <span class="date">{{ morgue.hiscore.birth }}</span>
                         </div>
 
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-    import { branches, gods } from "../undertaker/morgue.js";
+    import { branches, gods, races, backgrounds, resistances } from "../undertaker/morgue.js";
     import { darker } from "../undertaker/colors.js";
     const numeral = require("numeral");
 
@@ -130,6 +130,24 @@
                 return `rgb(${color.r}, ${color.g}, ${color.b})`
             },
 
+            getRaceColor(race) {
+                let color = races[race.toLowerCase()].color;
+
+                return `rgb(${color.r}, ${color.g}, ${color.b})`
+            },
+
+            getBackgroundColor(background) {
+                let color = backgrounds[background.toLowerCase()].color;
+
+                return `rgb(${color.r}, ${color.g}, ${color.b})`
+            },
+
+            getResistanceColor(resistance) {
+                let color = resistances[resistance.toLowerCase()].color;
+
+                return `rgb(${color.r}, ${color.g}, ${color.b})`
+            },
+
             getBranchImage(index) {
                 let previous = this.$data.morgue.notes[index-1]
                     ? this.$data.morgue.notes[index-1].location.branch
@@ -138,10 +156,10 @@
 
                 if (previous) {
                     if (previous !== current) {
-                        return this.getBranch(current).portalTile;
+                        return this.getBranch(current).tile;
                     }
                 } else {
-                    return this.getBranch("dungeon").portalTile;
+                    return this.getBranch("dungeon").tile;
                 }
 
                 return null;
