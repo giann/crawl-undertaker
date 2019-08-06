@@ -33,6 +33,10 @@
                                 class="keyword branch"
                                 :style="`color: ${getBranchColor(morgue.hiscore.location.branch)}`">{{ morgue.hiscore.location.branchLong }}</span>
                         </div>
+
+                        <div class="hiscore__line">
+                            The game lasted <span class="date">{{ morgue.hiscore.time | formattedHours }} ({{ morgue.hiscore.turns }} turns)</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -86,6 +90,7 @@
     import { branches, gods, races, backgrounds, resistances } from "../undertaker/morgue.js";
     import { darker } from "../undertaker/colors.js";
     const numeral = require("numeral");
+    const moment = require("moment");
 
     export default {
         name: "Morgue",
@@ -98,6 +103,12 @@
 
         filters: {
             formattedNumber: (number) => numeral(number).format("0,0"),
+
+            formattedHours: (seconds) =>
+                moment()
+                    .startOf('day')
+                    .seconds(seconds)
+                    .format('H:mm:ss'),
 
             capitalizeFirst: (string) => string[0].toUpperCase() + string.slice(1)
         },
