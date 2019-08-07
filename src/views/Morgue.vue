@@ -152,14 +152,12 @@
                                 <td class="stats__data__label">XL:</td>
                                 <td class="stats__data__value">
                                     <span class="stats__data__value__actual">{{ morgue.stats.experience.value }}</span>
-                                </td>
-
-                                <template v-if="morgue.stats.experience.next">
-                                    <td class="stats__data__label">Next:</td>
-                                    <td class="stats__data__value">
+                                
+                                    <template v-if="morgue.stats.experience.next">
+                                        <b> Next: </b>
                                         <span class="stats__data__value__actual">{{ morgue.stats.experience.next }}%</span>
-                                    </td>
-                                </template>
+                                    </template>
+                                </td>
                             </tr>
 
                             <tr>
@@ -286,7 +284,7 @@
                     </table>
                 </div>
 
-                <div class="stats__data">
+                <div class="stats__data equipment">
                     <table>
                         <tbody>
                             <tr v-for="(equipment, index) in morgue.stats.equipment" :key="index">
@@ -299,6 +297,38 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <section class="morgue-section mutations">
+                <div class="stat__data">
+                    <div>
+                        <span class="stats__data__label">@:</span>
+                        <span class="stats__data__value">
+                            {{ morgue.stats.status.length > 0 ? morgue.stats.status.join(", ") : "no status effetcts"}}
+                        </span>
+                    </div>
+
+                    <div>
+                        <span class="stats__data__label">A:</span>
+                        <span class="stats__data__value">
+                            {{ morgue.stats.mutations.length > 0 ? morgue.stats.mutations.join(", ") : "no striking features"}}
+                        </span>
+                    </div>
+
+                    <div v-if="morgue.stats.hasOrb">
+                        <span class="stats__data__label">0:</span>
+                        <span class="stats__data__value">
+                            Orb of Zot
+                        </span>
+                    </div>
+
+                    <div v-if="morgue.stats.runes.length > 0">
+                        <span class="stats__data__label">}:</span>
+                        <span class="stats__data__value">
+                            {{ morgue.stats.runes.join(", ") }}
+                        </span>
+                    </div>
                 </div>
             </section>
 
@@ -568,10 +598,15 @@
         display: inline-block;
     }
 
+    .stats, .resistances-equipment {
+        display: flex;
+    }
+
     .stats__data {
         display: inline-block;
         margin-right: 0.7em;
         vertical-align: top;
+        flex-grow: 1;
     }
 
     .stats__data:last-child {
@@ -580,5 +615,9 @@
 
     .stats__data__label {
         font-weight: bold;
+    }
+
+    .stats__data.equipment {
+        flex-grow: 20;
     }
 </style>

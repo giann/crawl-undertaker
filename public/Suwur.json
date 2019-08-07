@@ -143,7 +143,11 @@
         }, {
             "slot": "Right Ring",
             "item": "empty"
-        }]
+        }],
+        "status": ["berserk cooldown", "slowed", "very slow"],
+		"mutations": ["negative energy resistance 1", "electricity resistance", "unbreathing", "petrification resistance", "rot immunity", "AC +2"],
+		"hasOrb": false,
+		"runes": []
     },
     "location": {
         "branch": "Dungeon",
