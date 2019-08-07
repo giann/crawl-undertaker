@@ -1,7 +1,7 @@
 <template>
     <div class="morgue">
         <template v-if="morgue !== null">
-            <section v-if="morgue.hiscore" class="hiscore">
+            <section v-if="morgue.hiscore" class="morgue-section hiscore">
                 <div class="hiscore">
                     <span class="hiscore__score">{{ morgue.hiscore.points | formattedNumber }}</span>
                     
@@ -13,7 +13,7 @@
                         <div class="hiscore__line">
                             Began as a <span class="keyword race" :style="`color: ${getRaceColor(morgue.stats.species)}`">{{ morgue.stats.species }} </span>
                             <span class="keyword background" :style="`color: ${getBackgroundColor(morgue.stats.job)}`">{{ morgue.stats.job }}</span>
-                            on <span class="date">{{ morgue.hiscore.birth }}</span>
+                            on <span class="date"><b>{{ morgue.hiscore.birth }}</b></span>
                         </div>
 
                         <div v-if="morgue.hiscore.godRank" class="hiscore__line">
@@ -28,21 +28,173 @@
                         </div>
 
                         <div class="hiscore__line">
-                            On level {{ morgue.hiscore.location.depth }} of
+                            On level <b>{{ morgue.hiscore.location.depth }}</b> of
                             <span
                                 class="keyword branch"
                                 :style="`color: ${getBranchColor(morgue.hiscore.location.branch)}`">{{ morgue.hiscore.location.branchLong }}</span>
                         </div>
 
                         <div class="hiscore__line">
-                            The game lasted <span class="date">{{ morgue.hiscore.time | formattedHours }} ({{ morgue.hiscore.turns }} turns)</span>
+                            The game lasted <span class="date"><b>{{ morgue.hiscore.time | formattedHours }} ({{ morgue.hiscore.turns }} turns)</b></span>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section class="morgue-section stats">
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="stats__data__label">Health:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.health.value }}</span>
+                                    /
+                                    <span class="stats__data__value__realmax" v-if="morgue.stats.health.realMax">
+                                        {{ morgue.stats.health.realMax }}
+                                    </span>
+                                    <span v-else class="stats__data__value__realmax">
+                                        {{ morgue.stats.health.max }}
+                                    </span>
+                                    <span class="stats__data__value__max" v-if="morgue.stats.health.realMax">
+                                        ({{ morgue.stats.health.max }})
+                                    </span>
+                                </td>
+                            <tr>
+                                <td class="stats__data__label">Magic:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.magic.value }}</span>
+                                    /
+                                    <span class="stats__data__value__realmax" v-if="morgue.stats.magic.realMax">
+                                        {{ morgue.stats.magic.realMax }}
+                                    </span>
+                                    <span v-else class="stats__data__value__realmax">
+                                        {{ morgue.stats.magic.max }}
+                                    </span>
+                                    <span class="stats__data__value__max" v-if="morgue.stats.magic.realMax">
+                                        ({{ morgue.stats.magic.max }})
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="stats__data__label">Gold:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.gold }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="stats__data__label">AC:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.armorClass }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="stats__data__label">EV:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.evasion }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="stats__data__label">SH:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.shieldClass }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="stats__data__label">Str:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.strength.value }}</span>
+                                    <span class="stats__data__value__max" v-if="morgue.stats.strength.realMax">
+                                        ({{ morgue.stats.strength.max }})
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="stats__data__label">Int:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.intelligence.value }}</span>
+                                    <span class="stats__data__value__max" v-if="morgue.stats.intelligence.realMax">
+                                        ({{ morgue.stats.intelligence.max }})
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="stats__data__label">Dex:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.dexterity.value }}</span>
+                                    <span class="stats__data__value__max" v-if="morgue.stats.dexterity.realMax">
+                                        ({{ morgue.stats.dexterity.max }})
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="stats__data__label">XL:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.experience.value }}</span>
+                                </td>
+
+                                <template v-if="morgue.stats.experience.next">
+                                    <td class="stats__data__label">Next:</td>
+                                    <td class="stats__data__value">
+                                        <span class="stats__data__value__actual">{{ morgue.stats.experience.next }}%</span>
+                                    </td>
+                                </template>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">God:</td>
+                                <td v-if="morgue.stats.god" class="stats__data__value">
+                                    <span
+                                        class="stats__data__value__actual"
+                                        :style="`color: ${getGodColor(morgue.stats.god.god)}`">
+                                        {{ morgue.stats.god.god }}
+                                    </span>
+                                    [{{ morgue.stats.god.rank }}]
+                                </td>
+                                <td v-else>
+                                    <span class="stats__data__value__actual">No god</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">Spells:</td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.spells.value }}</span>
+                                    /
+                                    <span class="stats__data__value__realmax">
+                                        {{ morgue.stats.spells.max }}
+                                    </span>
+                                    levels left
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
             <h2>Milestones</h2>
-            <section class="notes">
+            <section class="morgue-section notes">
                 <div class="travel-path">
                     <svg width="64" :height="morgue.notes.length * 69">
                         <g>
@@ -218,6 +370,10 @@
         display: flex;
     }
 
+    .morgue-section {
+        margin-bottom: 2em;
+    }
+
     .travel-notes {
         .note {
             height: 59px;
@@ -299,5 +455,18 @@
     .hiscore__info {
         margin-left: 2em;
         display: inline-block;
+    }
+
+    .stats__data {
+        display: inline-block;
+        margin-right: 0.7em;
+    }
+
+    .stats__data:last-child {
+        margin-right: 0;
+    }
+
+    .stats__data__label {
+        font-weight: bold;
     }
 </style>
