@@ -16,8 +16,6 @@
             "branchLong": "the Dungeon",
             "depth": 11
         },
-        "turns": 553,
-        "time": 972,
         "godRank": "a Believer"
     },
     "stats": {
@@ -25,6 +23,8 @@
         "title": "the Brawler",
         "species": "Troll",
         "job": "Monk",
+        "turns": 553,
+        "time": 972,
         "health": {
             "value": 213,
             "max": 213,

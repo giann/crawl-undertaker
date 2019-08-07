@@ -17,6 +17,10 @@
 </script>
 
 <style lang="scss">
+body {
+    margin: 0;
+}
+
 #app {
     font-family: 'Courier Prime Code', monospace;
     -webkit-font-smoothing: antialiased;
@@ -24,7 +28,7 @@
     color: #2c3e50;
 
     max-width: 600px;
-    margin: 3em auto auto;
+    margin: auto;
 }
 
 .keyword {
