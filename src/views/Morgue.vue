@@ -50,13 +50,13 @@
                                 <td class="stats__data__value">
                                     <span class="stats__data__value__actual">{{ morgue.stats.health.value }}</span>
                                     /
-                                    <span class="stats__data__value__realmax" v-if="morgue.stats.health.realMax">
+                                    <span class="stats__data__value__realmax" v-if="morgue.stats.health.realMax && morgue.stats.health.realMax !== morgue.stats.health.real">
                                         {{ morgue.stats.health.realMax }}
                                     </span>
                                     <span v-else class="stats__data__value__realmax">
                                         {{ morgue.stats.health.max }}
                                     </span>
-                                    <span class="stats__data__value__max" v-if="morgue.stats.health.realMax">
+                                    <span class="stats__data__value__max" v-if="morgue.stats.health.realMax && morgue.stats.health.realMax !== morgue.stats.health.real">
                                         ({{ morgue.stats.health.max }})
                                     </span>
                                 </td>
@@ -65,13 +65,13 @@
                                 <td class="stats__data__value">
                                     <span class="stats__data__value__actual">{{ morgue.stats.magic.value }}</span>
                                     /
-                                    <span class="stats__data__value__realmax" v-if="morgue.stats.magic.realMax">
+                                    <span class="stats__data__value__realmax" v-if="morgue.stats.magic.realMax && morgue.stats.magic.realMax !== morgue.stats.magic.real">
                                         {{ morgue.stats.magic.realMax }}
                                     </span>
                                     <span v-else class="stats__data__value__realmax">
                                         {{ morgue.stats.magic.max }}
                                     </span>
-                                    <span class="stats__data__value__max" v-if="morgue.stats.magic.realMax">
+                                    <span class="stats__data__value__max" v-if="morgue.stats.magic.realMax && morgue.stats.magic.realMax !== morgue.stats.magic.real">
                                         ({{ morgue.stats.magic.max }})
                                     </span>
                                 </td>
@@ -118,7 +118,7 @@
                                 <td class="stats__data__label">Str:</td>
                                 <td class="stats__data__value">
                                     <span class="stats__data__value__actual">{{ morgue.stats.strength.value }}</span>
-                                    <span class="stats__data__value__max" v-if="morgue.stats.strength.realMax">
+                                    <span class="stats__data__value__max" v-if="morgue.stats.strength.realMax && morgue.stats.strength.realMax !== morgue.stats.strength.real"> 
                                         ({{ morgue.stats.strength.max }})
                                     </span>
                                 </td>
@@ -127,7 +127,7 @@
                                 <td class="stats__data__label">Int:</td>
                                 <td class="stats__data__value">
                                     <span class="stats__data__value__actual">{{ morgue.stats.intelligence.value }}</span>
-                                    <span class="stats__data__value__max" v-if="morgue.stats.intelligence.realMax">
+                                    <span class="stats__data__value__max" v-if="morgue.stats.intelligence.realMax && morgue.stats.intelligence.realMax !== morgue.stats.intelligence.real"> 
                                         ({{ morgue.stats.intelligence.max }})
                                     </span>
                                 </td>
@@ -136,7 +136,7 @@
                                 <td class="stats__data__label">Dex:</td>
                                 <td class="stats__data__value">
                                     <span class="stats__data__value__actual">{{ morgue.stats.dexterity.value }}</span>
-                                    <span class="stats__data__value__max" v-if="morgue.stats.dexterity.realMax">
+                                    <span class="stats__data__value__max" v-if="morgue.stats.dexterity.realMax && morgue.stats.dexterity.realMax !== morgue.stats.dexterity.real"> 
                                         ({{ morgue.stats.dexterity.max }})
                                     </span>
                                 </td>
@@ -186,6 +186,115 @@
                                         {{ morgue.stats.spells.max }}
                                     </span>
                                     levels left
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="morgue-section resistances-equipment">
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr v-for="(resistance, index) in morgue.stats.resistances" :key="index">
+                                <td class="stats__data__label">
+                                    {{ resistance.name }}
+                                </td>
+                                <td class="stats__data__value">
+                                    {{ resistance.symbolValue }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">
+                                    HPRegen
+                                </td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.hpRegen | formatRegen }}</span>/turn
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">
+                                    MPRegen
+                                </td>
+                                <td class="stats__data__value">
+                                    <span class="stats__data__value__actual">{{ morgue.stats.mpRegen | formatRegen }}</span>/turn
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="stats__data__label">SeeInvis</td>
+                                <td class="stats__data__value">{{ morgue.stats.seeInvisible ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">Gourm</td>
+                                <td class="stats__data__value">{{ morgue.stats.gourmand ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">Faith</td>
+                                <td class="stats__data__value">{{ morgue.stats.faith ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">Spirit</td>
+                                <td class="stats__data__value">{{ morgue.stats.spirit ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">Reflect</td>
+                                <td class="stats__data__value">{{ morgue.stats.reflect ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="stats__data__label">Harm</td>
+                                <td class="stats__data__value">{{ morgue.stats.harm ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr v-if="morgue.stats.randomRage">
+                                <td class="stats__data__label">Rnd*Rage</td>
+                                <td class="stats__data__value">+</td>
+                            </tr>
+                            <tr v-else>
+                                <td class="stats__data__label">Clarity</td>
+                                <td class="stats__data__value">{{ morgue.stats.clarity ? "+" : "."}}</td>
+                            </tr>
+
+                            <tr v-if="morgue.stats.noTeleportation">
+                                <td class="stats__data__label">NoTele</td>
+                                <td class="stats__data__value">+</td>
+                            </tr>
+                            <tr v-else-if="morgue.stats.randomTeleportation">
+                                <td class="stats__data__label">Clarity</td>
+                                <td class="stats__data__value">+</td>
+                            </tr>
+
+                            <tr v-if="morgue.stats.noCast">
+                                <td class="stats__data__label">NoCast</td>
+                                <td class="stats__data__value">+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stats__data">
+                    <table>
+                        <tbody>
+                            <tr v-for="(equipment, index) in morgue.stats.equipment" :key="index">
+                                <td v-if="equipment.item !== 'empty'" class="stats__data__value">
+                                    {{ equipment.position ? `${equipment.position} - ` : "" }}{{ equipment.item}} {{ equipment.melded ? "(melded)" : "" }}
+                                </td>
+                                <td v-else>
+                                    no {{ equipment.slot.toLowerCase() }}
                                 </td>
                             </tr>
                         </tbody>
@@ -262,7 +371,9 @@
                     .seconds(seconds)
                     .format('H:mm:ss'),
 
-            capitalizeFirst: (string) => string[0].toUpperCase() + string.slice(1)
+            capitalizeFirst: (string) => string[0].toUpperCase() + string.slice(1),
+
+            formatRegen: (number) => numeral(number / 100).format("0.00")
         },
 
         methods: {
@@ -460,6 +571,7 @@
     .stats__data {
         display: inline-block;
         margin-right: 0.7em;
+        vertical-align: top;
     }
 
     .stats__data:last-child {

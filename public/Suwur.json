@@ -3,7 +3,7 @@
         "type": "Dungeon Crawl Stone Soup",
         "version": "0.24-a0-535-gb729ab8207",
         "client": "console",
-        "seed": null
+        "seed": 1.661676543143105e+19
     },
     "hiscore": {
         "mode": "wizard",
@@ -62,7 +62,88 @@
         "spells": {
             "value": 17,
             "max": 19
-        }
+        },
+        "resistances": [{
+            "name": "rFire",
+            "value": 0,
+            "symbolValue": ". . . "
+        }, {
+            "name": "rCold",
+            "value": 0,
+            "symbolValue": ". . . "
+        }, {
+            "name": "rNeg",
+            "value": 1,
+            "symbolValue": "+ . . "
+        }, {
+            "name": "rPois",
+            "value": 3,
+            "symbolValue": "∞"
+        }, {
+            "name": "rElec",
+            "value": 1,
+            "symbolValue": "+ "
+        }, {
+            "name": "rCorr",
+            "value": 0,
+            "symbolValue": ". "
+        }, {
+            "name": "MR",
+            "value": 3,
+            "symbolValue": "+++.."
+        }],
+        "stealth": {
+            "value": 2,
+            "symbolValue": "++........"
+        },
+        "hpRegen": 4,
+        "mpRegen": 7,
+        "seeInvisible": false,
+        "gourmand": false,
+        "faith": false,
+        "spirit": false,
+        "reflect": false,
+        "harm": false,
+        "clarity": false,
+        "randomRage": false,
+        "noTeleportation": false,
+        "randomTeleportation": false,
+        "noCast": false,
+        "equipment": [{
+            "slot": "Weapon",
+            "position": "a",
+            "melded": false,
+            "item": "+0 mace"
+        }, {
+            "slot": "Shield",
+            "item": "empty"
+        }, {
+            "slot": "Armour",
+            "position": "b",
+            "melded": false,
+            "item": "+0 robe"
+        }, {
+            "slot": "Helmet",
+            "item": "empty"
+        }, {
+            "slot": "Cloak",
+            "item": "empty"
+        }, {
+            "slot": "Gloves",
+            "item": "empty"
+        }, {
+            "slot": "Boots",
+            "item": "empty"
+        }, {
+            "slot": "Amulet",
+            "item": "empty"
+        }, {
+            "slot": "Left Ring",
+            "item": "empty"
+        }, {
+            "slot": "Right Ring",
+            "item": "empty"
+        }]
     },
     "location": {
         "branch": "Dungeon",
