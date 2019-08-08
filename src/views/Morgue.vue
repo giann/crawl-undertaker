@@ -3,11 +3,9 @@
         <template v-if="morgue !== null">
             <div class="morgue-header">
                 <div class="version">
-                    <b>{{ morgue.header.type }}</b>
-                    <br>
-                    v{{ morgue.header.version }}
-                    <br>
-                    ({{ morgue.header.client }})
+                    <div><b>{{ morgue.header.type }}</b></div>
+                    <div>v{{ morgue.header.version }}</div>
+                    <div>({{ morgue.header.client }})</div>
                 </div>
 
                 <div>
@@ -372,6 +370,23 @@
                     </div>
                 </section>
 
+                <section class="morgue-section visits">
+                    <div v-if="morgue.hiscore && morgue.hiscore.hasEscaped">
+                        You escaped
+                    </div>
+                    <div v-else>
+                        {{ morgue.hiscore ? "You were " : "You are " }} on level <b>{{ morgue.location.depth }}</b> of <span class="keyword branch" :style="`color: ${getBranchColor(morgue.location.branch)}`">{{ morgue.location.branchLong }}</span>
+                    </div>
+
+                    <div v-if="morgue.religion">
+                        You worshipped <span class="keyword god" :style="`color: ${getGodColor(morgue.religion.god)}`">{{ morgue.religion.god }}</span>
+                    </div>
+
+                    <div v-if="morgue.religion">
+                        {{ morgue.religion.favour }}
+                    </div>
+                </section>
+
                 <h2 id="notes">Notes</h2>
                 <section class="morgue-section notes">
                     <div class="travel-path">
@@ -679,6 +694,7 @@
     }
 
     .hiscore__line {
+        font-size: 1.1em;
         line-height: 1.5em;
     }
 

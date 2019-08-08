@@ -16,7 +16,8 @@
             "branchLong": "the Dungeon",
             "depth": 11
         },
-        "godRank": "a Believer"
+        "godRank": "a Believer",
+        "hasEscaped": false
     },
     "stats": {
         "name": "Wiudi",
