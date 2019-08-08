@@ -14,7 +14,7 @@
         "location": {
             "branch": "Dungeon",
             "branchLong": "the Dungeon",
-            "depth": 11
+            "depth": 10
         },
         "godRank": "a Believer",
         "hasEscaped": false
@@ -222,36 +222,35 @@
         "misc": 0
     },
     "inventory": [{
+        "class": "Hand Weapons",
+        "items": [{
+            "colour": 7,
+            "pronoun": "a",
+            "name": "+0 mace",
+            "position": "a",
+            "count": 1,
+            "inscription": "",
+            "slot": "weapon",
+            "cursed": false
+        }, {
+            "colour": 7,
+            "pronoun": "a",
+            "name": "+0 club",
+            "position": "i",
+            "count": 1,
+            "inscription": "",
+            "slot": "",
+            "cursed": false,
+            "origin": "You took it off a goblin on level 1 of the Dungeon"
+        }]
+    }, {
         "class": "Missiles",
         "items": [{
+            "colour": 6,
             "pronoun": "",
-            "name": "poisoned darts",
-            "position": "e",
-            "count": 69,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "large rocks",
+            "name": "stones",
             "position": "h",
-            "count": 71,
-            "inscription": "{!d}",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "curare-tipped darts",
-            "position": "m",
-            "count": 6,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "a",
-            "name": "silver javelin",
-            "position": "A",
-            "count": 1,
+            "count": 16,
             "inscription": "",
             "slot": "quivered",
             "cursed": false
@@ -259,381 +258,91 @@
     }, {
         "class": "Armour",
         "items": [{
+            "colour": 7,
             "pronoun": "a",
-            "name": "+5 shield",
-            "position": "v",
+            "name": "+0 animal skin",
+            "position": "b",
             "count": 1,
             "inscription": "",
             "slot": "worn",
-            "cursed": false,
-            "origin": "You took it off a gnoll sergeant on level 5 of the Dungeon"
+            "cursed": false
         }, {
-            "pronoun": "the",
-            "name": "+4 moon troll leather armour",
-            "position": "C",
+            "colour": 6,
+            "pronoun": "a",
+            "name": "leather armour",
+            "position": "e",
             "count": 1,
-            "inscription": "{Spirit, Regen++ MP+5, regen}",
-            "slot": "worn",
-            "cursed": false,
-            "origin": "You bought it in a shop on level 2 of the Orcish Mines",
-            "description": "It affects your magic capacity (+5).\n   It increases your rate of regeneration."
-        }, {
-            "pronoun": "the",
-            "name": "+3 crown of Dyrovepreva",
-            "position": "E",
-            "count": 1,
-            "inscription": "{rElec Int+2 SInv}",
-            "slot": "worn",
-            "cursed": false,
-            "origin": "Okawaru gifted it to you on level 14 of the Dungeon",
-            "description": "It affects your intelligence (+2).\n   It insulates you from electricity.\n   It lets you see invisible."
-        }, {
-            "pronoun": "the",
-            "name": "+0 hat of the Bagpipe",
-            "position": "J",
-            "count": 1,
-            "inscription": "{rC+ Str+3 Int-4 Stlth+}",
+            "inscription": "",
             "slot": "",
             "cursed": false,
-            "origin": "Okawaru gifted it to you on level 4 of the Spider Nest",
-            "description": "It affects your strength (+3).\n   It affects your intelligence (-4).\n   It protects you from cold.\n   It makes you more stealthy."
-        }, {
-            "pronoun": "the",
-            "name": "+0 cloak \"Fonigg\"",
-            "position": "Y",
-            "count": 1,
-            "inscription": "{+Fly MR++ Dex+2}",
-            "slot": "worn",
-            "cursed": false,
-            "origin": "You bought it in a shop on level 1 of the Vaults",
-            "description": "It affects your dexterity (+2).\n   It affects your resistance to hostile enchantments.\n   It lets you fly."
-        }]
-    }, {
-        "class": "Magical Staves",
-        "items": [{
-            "pronoun": "an",
-            "name": "uncursed staff of poison",
-            "position": "c",
-            "count": 1,
-            "inscription": "{rPois}",
-            "slot": "",
-            "cursed": false,
-            "origin": "You took it off Arachne on level 4 of the Spider Nest"
+            "origin": "You found it on level 1 of the Dungeon"
         }]
     }, {
         "class": "Jewellery",
         "items": [{
-            "pronoun": "an",
-            "name": "amulet of regeneration",
-            "position": "H",
-            "count": 1,
-            "inscription": "{+regen, !d}",
-            "slot": "around neck",
-            "cursed": false,
-            "origin": "You found it on level 1 of the Lair of Beasts"
-        }, {
-            "pronoun": "the",
-            "name": "ring of Nytyeg",
-            "position": "Q",
-            "count": 1,
-            "inscription": "{+Blink rF+++ MP+9 Str+5 Stlth-}",
-            "slot": "right claw",
-            "cursed": false,
-            "origin": "You acquired it on level 1 of the Swamp",
-            "description": "[ring of magical power]\n   \n   It affects your strength (+5).\n   It renders you almost immune to fire.\n   It affects your magic capacity (+9).\n   It lets you blink.\n   It makes you less stealthy."
-        }, {
+            "colour": 5,
             "pronoun": "a",
-            "name": "ring of poison resistance",
-            "position": "R",
-            "count": 1,
-            "inscription": "{rPois, !d}",
-            "slot": "left claw",
-            "cursed": false,
-            "origin": "You bought it in a shop on level 2 of the Orcish Mines"
-        }, {
-            "pronoun": "an",
-            "name": "uncursed ring of positive energy",
-            "position": "S",
+            "name": "ring of positive energy",
+            "position": "d",
             "count": 1,
             "inscription": "{rN+}",
-            "slot": "",
+            "slot": "left hand",
             "cursed": false,
-            "origin": "You found it in an ice cave"
-        }]
-    }, {
-        "class": "Wands",
-        "items": [{
-            "pronoun": "a",
-            "name": "wand of disintegration (42)",
-            "position": "n",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 2 of the Spider Nest"
+            "origin": "You found it on level 1 of the Dungeon"
         }, {
-            "pronoun": "a",
-            "name": "wand of digging (5)",
-            "position": "q",
+            "colour": 37,
+            "pronoun": "the",
+            "name": "amulet of the Four Winds",
+            "position": "j",
             "count": 1,
-            "inscription": "",
-            "slot": "",
+            "inscription": "{rN+ MR+++ Clar}",
+            "slot": "around neck",
             "cursed": false,
-            "origin": "You found it on level 2 of the Spider Nest"
-        }, {
-            "pronoun": "a",
-            "name": "wand of scattershot (12)",
-            "position": "B",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 8 of the Dungeon"
-        }, {
-            "pronoun": "a",
-            "name": "wand of iceblast (7)",
-            "position": "D",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 9 of the Dungeon"
-        }, {
-            "pronoun": "a",
-            "name": "wand of polymorph (24)",
-            "position": "G",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 4 of the Lair of Beasts"
-        }, {
-            "pronoun": "a",
-            "name": "wand of paralysis (50)",
-            "position": "K",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 5 of the Lair of Beasts"
-        }, {
-            "pronoun": "a",
-            "name": "wand of flame (78)",
-            "position": "L",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 5 of the Lair of Beasts"
-        }, {
-            "pronoun": "a",
-            "name": "wand of enslavement (9)",
-            "position": "O",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 1 of the Swamp"
-        }, {
-            "pronoun": "a",
-            "name": "wand of acid (10)",
-            "position": "X",
-            "count": 1,
-            "inscription": "",
-            "slot": "",
-            "cursed": false,
-            "origin": "You found it on level 2 of the Spider Nest"
+            "origin": "Your wizardly powers created it on level 1 of the Dungeon",
+            "description": "[amulet of nothing]\n   \n   It protects you from negative energy.\n   It affects your resistance to hostile enchantments.\n   It protects you against confusion."
         }]
     }, {
         "class": "Scrolls",
         "items": [{
-            "pronoun": "",
-            "name": "scrolls of blinking",
-            "position": "a",
-            "count": 8,
-            "inscription": "{!r}",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of teleportation",
-            "position": "i",
-            "count": 16,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of remove curse",
-            "position": "t",
-            "count": 25,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of fear",
-            "position": "u",
-            "count": 4,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
+            "colour": 7,
             "pronoun": "a",
-            "name": "scroll of identify",
-            "position": "w",
+            "name": "scroll labeled PATUUP BOHUHON",
+            "position": "f",
             "count": 1,
             "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of fog",
-            "position": "y",
-            "count": 6,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of amnesia",
-            "position": "z",
-            "count": 9,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of immolation",
-            "position": "F",
-            "count": 2,
-            "inscription": "{!r}",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "scrolls of enchant armour",
-            "position": "M",
-            "count": 2,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "a",
-            "name": "scroll of holy word",
-            "position": "P",
-            "count": 1,
-            "inscription": "{!r}",
             "slot": "",
             "cursed": false
         }]
     }, {
         "class": "Potions",
         "items": [{
+            "colour": 14,
             "pronoun": "",
-            "name": "potions of brilliance",
-            "position": "f",
-            "count": 12,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of agility",
-            "position": "g",
-            "count": 7,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of lignification",
-            "position": "j",
-            "count": 7,
-            "inscription": "{!q}",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of resistance",
+            "name": "potions of degeneration",
             "position": "k",
-            "count": 6,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of curing",
-            "position": "l",
-            "count": 9,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of heal wounds",
-            "position": "o",
-            "count": 9,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of ambrosia",
-            "position": "p",
-            "count": 4,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of haste",
-            "position": "r",
-            "count": 4,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of magic",
-            "position": "s",
-            "count": 2,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of berserk rage",
-            "position": "x",
-            "count": 4,
+            "count": 12,
             "inscription": "{!q}",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "",
-            "name": "potions of flight",
-            "position": "U",
-            "count": 2,
-            "inscription": "",
-            "slot": "",
-            "cursed": false
-        }, {
-            "pronoun": "a",
-            "name": "potion of might",
-            "position": "W",
-            "count": 1,
-            "inscription": "",
             "slot": "",
             "cursed": false
         }]
     }, {
         "class": "Comestibles",
         "items": [{
-            "pronoun": "",
-            "name": "rations",
-            "position": "b",
-            "count": 59,
+            "colour": 6,
+            "pronoun": "a",
+            "name": "ration",
+            "position": "c",
+            "count": 1,
             "inscription": "",
+            "slot": "",
+            "cursed": false
+        }, {
+            "colour": 12,
+            "pronoun": "a",
+            "name": "chunk of flesh",
+            "position": "g",
+            "count": 1,
+            "inscription": "{@w0}",
             "slot": "",
             "cursed": false
         }]

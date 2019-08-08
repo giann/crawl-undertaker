@@ -553,10 +553,33 @@ const branches = {
     }
 };
 
+const colors = [
+    { r: 0x1E, g: 0x25, b:0x41 }, // #2c3e50 BLACK,
+    { r: 0x1E, g: 0x25, b:0x41 }, // #2c3e50 COLOUR_UNDEF = BLACK,
+    { r: 0x57, g: 0xC7, b:0xFF }, // #57C7FF BLUE,
+    { r: 0x5A, g: 0xF7, b:0xB0 }, // #5AF7B0 GREEN,
+    { r: 0x89, g: 0xDD, b:0xFF }, // #89DDFF CYAN,
+    { r: 0xF0, g: 0x71, b:0x9B }, // #F0719B RED,
+    { r: 0xC7, g: 0x92, b:0xEA }, // #C792EA MAGENTA,
+    { r: 0xFF, g: 0xA5, b:0x6B }, // #FFA56B BROWN,
+    { r: 0xEE, g: 0xFF, b:0xFF }, // #EEFFFF LIGHTGRAY,
+    { r: 0xEE, g: 0xFF, b:0xFF }, // #EEFFFF LIGHTGREY = LIGHTGRAY,
+    { r: 0xDE, g: 0xE6, b:0xE7 }, // #DEE6E7 DARKGRAY,
+    { r: 0xDE, g: 0xE6, b:0xE7 }, // #DEE6E7 DARKGREY = DARKGRAY,
+    { r: 0x1D, g: 0xA0, b:0xE2 }, // #1DA0E2 LIGHTBLUE,
+    { r: 0x2C, g: 0xE5, b:0x92 }, // #2CE592 LIGHTGREEN,
+    { r: 0x47, g: 0xBA, b:0xE8 }, // #47BAE8 LIGHTCYAN,
+    { r: 0xF0, g: 0x2E, b:0x6E }, // #F02E6E LIGHTRED,
+    { r: 0xA7, g: 0x42, b:0xEA }, // #A742EA LIGHTMAGENTA,
+    { r: 0xFF, g: 0x85, b:0x37 }, // #FF8537 YELLOW,
+    { r: 0x1E, g: 0x25, b:0x41 }, // #EEFFFF WHITE,
+];
+
 export {
     branches,
     races,
     backgrounds,
     gods,
-    resistances
+    resistances,
+    colors
 }

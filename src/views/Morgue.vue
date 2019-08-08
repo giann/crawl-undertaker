@@ -433,6 +433,55 @@
                     </div>
                 </section>
 
+                <h2 id="inventory">Inventory</h2>
+                <section class="morgue-section inventory">
+                    <div class="inventory__class" v-for="(category, index) in morgue.inventory" :key="index">
+                        <h4>{{ category.class }}</h4>
+                        <ul>
+                            <li
+                                v-for="(item, itemIndex) in category.items"
+                                :key="itemIndex">
+                                <div>
+                                    <div class="inventory__item__badges inventory__item__badges--left"
+                                        :style="`background-color: ${getColor(item.colour, 0.6)}`">
+                                        <span class="inventory__item__position">
+                                            {{ item.position }}
+                                        </span>
+                                    </div>
+
+                                    <div class="inventory__item__name"
+                                        :class="{ 'inventory__item__name--end': item.count <= 1 && !item.inscription && !item.slot }"
+                                        :style="`background-color: ${getColor(item.colour, 0.4)}`">
+                                        {{ item.pronoun }} {{ item.name }}
+                                    </div>
+
+                                    <div class="inventory__item__badges inventory__item__badges--right"
+                                        v-if="item.count > 1 || item.inscription || item.slot"
+                                        :style="`background-color: ${getColor(item.colour, 0.6)}`">
+                                        <span class="inventory__item__count" v-if="item.count > 1">
+                                            x{{  item.count }}
+                                        </span>
+                                        <span v-if="item.inscription" class="inventory__item__inscription">
+                                            {{ item.inscription }}
+                                        </span>
+                                        <span class="inventory__item__slot" v-if="item.slot !== ''">
+                                            {{ item.slot }}
+                                        </span>
+                                        <span class="inventory__item__cursed" v-if="item.cursed">
+                                            cursed
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="inventory__item__description" v-if="item.description || item.origin">
+                                    <template v-if="item.origin">({{ item.origin }})</template>
+                                    <span v-if="item.description" v-html="`<br><br>${item.description.replace(/\n/g, '<br>')}`"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
                 <h2 id="notes">Notes</h2>
                 <section class="morgue-section notes">
                     <div class="travel-path">
@@ -480,7 +529,7 @@
 </template>
 
 <script>
-    import { branches, gods, races, backgrounds, resistances } from "../undertaker/morgue.js";
+    import { branches, gods, races, backgrounds, resistances, colors } from "../undertaker/morgue.js";
     import { darker } from "../undertaker/colors.js";
     const numeral = require("numeral");
     const moment = require("moment");
@@ -515,6 +564,12 @@
 
             getBranchWidth(branch) {
                 return this.getBranch(branch).width + 1;
+            },
+
+            getColor(color, alpha) {
+                return colors[color]
+                    ? `rgb${alpha ? "a" : ""}(${colors[color].r}, ${colors[color].g}, ${colors[color].b}${alpha ? `, ${alpha}`: ""})`
+                    : "";
             },
 
             getBranchColor(branch, depth) {
@@ -673,7 +728,8 @@
     .morgue-sections {
         display: inline-block;
         border-left: 1px solid #2C3E5010;
-        padding: 2em 0 0 2em;
+        padding: 2em;
+        border-right: 1px solid #2C3E5010;
     }
 
     .notes {
@@ -798,5 +854,57 @@
 
     .misc > div {
         line-height: 1.3em;
+    }
+
+    .inventory ul {
+        list-style-type: none;
+        padding-inline-start: 2em;
+    }
+
+    .inventory li {
+        margin: 0.9em 0;
+    }
+
+    .inventory__item__description {
+        margin: .5em 0 1em 2em;
+    }
+
+    .inventory__item__position {
+        font-weight: bold;
+    }
+
+    .inventory__item__name, .inventory__item__badges {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: .5em .7em;
+    }
+
+    .inventory__item__name {
+        background-color: #f0f4fa;
+    }
+
+    .inventory__item__name--end {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .inventory__item__badges {
+        text-align: center;
+    }
+
+    .inventory__item__badges--left {
+        background-color: #E5E8EE;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    .inventory__item__badges--right {
+        background-color: #E5E8EE;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .inventory__item__slot {
+        font-weight: bold;
     }
 </style>
