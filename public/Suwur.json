@@ -197,7 +197,24 @@
         "name": "Ice Cave",
         "visits": 1,
         "levels": 1
+    },
+    {
+        "name": "Pandemonium",
+        "visits": 1,
+        "levels": 3
+    },
+    {
+        "name": "Abyss",
+        "visits": 3,
+        "levels": 4
+    },
+    {
+        "name": "Ziggurat",
+        "visits": 2,
+        "levels": 10
     }],
+    "completedZiggurats": 0,
+    "deepestZiggurat": 6,
     "gold": {
         "collected": 4627,
         "spent": 2674,

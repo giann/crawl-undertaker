@@ -335,7 +335,27 @@ const gods = {
 };
 
 const resistances = {
-
+    rFire: {
+        color: { r: 0xFF, g: 0x31, b: 0x00 } // #FF3100
+    },
+    rCold: {
+        color: { r: 0x00, g: 0x99, b: 0xFF } // #0099FF
+    },
+    rNeg: {
+        color: { r: 0x00, g: 0x24, b: 0x3D } // #00243D
+    },
+    rPois: {
+        color: { r: 0x1B, g: 0x86, b: 0x10 } // #1B8610
+    },
+    rElec: {
+        color: { r: 0x8F, g: 0x85, b: 0xC8 } // #8F85C8
+    },
+    rCorr: {
+        color: { r: 0xDB, g: 0x51, b: 0x4D } // #DB514D
+    },
+    MR: {
+        color: { r: 0x76, g: 0x3B, b: 0x71 } // #763B71
+    }
 };
 
 const branches = {

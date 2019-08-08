@@ -234,7 +234,7 @@
                         <table>
                             <tbody>
                                 <tr v-for="(resistance, index) in morgue.stats.resistances" :key="index">
-                                    <td class="stats__data__label">
+                                    <td class="stats__data__label" :style="`color: ${getResistanceColor(resistance.name)}`">
                                         {{ resistance.name }}
                                     </td>
                                     <td class="stats__data__value">
@@ -370,20 +370,66 @@
                     </div>
                 </section>
 
-                <section class="morgue-section visits">
+                <section class="morgue-section misc">
                     <div v-if="morgue.hiscore && morgue.hiscore.hasEscaped">
-                        You escaped
+                        You escaped.
                     </div>
                     <div v-else>
-                        {{ morgue.hiscore ? "You were " : "You are " }} on level <b>{{ morgue.location.depth }}</b> of <span class="keyword branch" :style="`color: ${getBranchColor(morgue.location.branch)}`">{{ morgue.location.branchLong }}</span>
+                        {{ morgue.hiscore ? "You were " : "You are " }} on level
+                        <b>{{ morgue.location.depth }}</b>
+                        of <span class="keyword branch" :style="`color: ${getBranchColor(morgue.location.branch)}`">{{ morgue.location.branchLong }}</span>.
                     </div>
 
                     <div v-if="morgue.religion">
-                        You worshipped <span class="keyword god" :style="`color: ${getGodColor(morgue.religion.god)}`">{{ morgue.religion.god }}</span>
+                        You worshipped
+                        <span class="keyword god" :style="`color: ${getGodColor(morgue.religion.god)}`">{{ morgue.religion.god }}</span>.
                     </div>
 
                     <div v-if="morgue.religion">
                         {{ morgue.religion.favour }}
+                    </div>
+
+                    <div>
+                        You were {{ morgue.hunger }}.
+                    </div>
+
+                    <div v-if="morgue.transform">
+                        {{ morgue.transform }}.
+                    </div>
+
+                    <div>
+                        <br>
+                        You {{ morgue.hiscore ? "" : "have" }} visited <b>{{ morgue.visits.length - 1 }}</b>
+                        branch{{ morgue.visits.length > 0 ? "es" : "" }}
+                        of the dungeon and {{ morgue.hiscore ? "saw" : "seen" }} <b>{{ totalLevelSeen() }}</b>
+                        of its levels.
+                    </div>
+
+                    <div v-if="visits('Pandemonium') > 0">
+                        You {{ morgue.hiscore ? "" : "have" }} visited
+                        <span class="keyword branch" :style="`color: ${getBranchColor('Pandemonium')}`">Pandemonium</span> <b> {{ visits('Pandemonium') }}</b>
+                        time{{ visits('Pandemonium') > 1 ? "s" : ""}}
+                        and {{ morgue.hiscore ? "saw" : "seen" }} <b> {{ levels('Pandemonium') }} </b> of its levels.
+                    </div>
+
+                    <div v-if="visits('Abyss') > 0">
+                        You {{ morgue.hiscore ? "" : "have" }} visited
+                        <span class="keyword branch" :style="`color: ${getBranchColor('Abyss')}`">the Abyss</span> <b> {{ visits('Abyss') }}</b>
+                        time{{ visits('Abyss') > 1 ? "s" : ""}}.
+                    </div>
+
+                    <div v-if="visits('Bazaar') > 0">
+                        You {{ morgue.hiscore ? "" : "have" }}
+                        visited <b> {{ visits('Bazaar') }}</b> bazaar{{ visits('Bazaar') > 1 ? "s" : ""}}.
+                    </div>
+
+                    <div v-if="visits('Ziggurat') > 0">
+                        You {{ morgue.hiscore ? "" : "have" }}
+                        {{ morgue.completedZiggurats !== visits('Ziggurat') ? 'visited' : 'completed' }}
+                        <b> {{ visits('Ziggurat') }} </b> <span class="keyword branch" :style="`color: ${getBranchColor('Ziggurat')}`">Ziggurat{{ visits('Ziggurat') > 1 ? 's' : '' }}</span>
+                        {{ morgue.completedZiggurats !== visits('Ziggurat') && morgue.completedZiggurats > 0 ? `(completing ${morgue.completedZiggurats})` : '' }}
+                        and {{ morgue.hiscore ? "saw" : "seen" }} <b> {{ levels('Ziggurat') }} </b> of {{ visits('Ziggurat') > 1 ? 'their' : 'its' }} levels
+                        {{ visits('Ziggurat') > 1 ? `(deepest ${morgue.deepestZiggurat})` : '' }}.
                     </div>
                 </section>
 
@@ -503,7 +549,7 @@
             },
 
             getResistanceColor(resistance) {
-                let color = resistances[resistance.toLowerCase()].color;
+                let color = resistances[resistance].color;
 
                 return `rgb(${color.r}, ${color.g}, ${color.b})`
             },
@@ -547,6 +593,30 @@
                 }
 
                 return `M${this.getBranchWidth(current)*8},${37 + (index * 69)} L${this.getBranchWidth(current)*8},${37 + ((index+1) * 69)}`;
+            },
+
+            totalLevelSeen() {
+                return this.$data.morgue.visits.reduce((acc, visit) => acc + visit.levels, 1);
+            },
+
+            visits(branch) {
+                let visits = 0;
+                this.$data.morgue.visits.forEach((v) => {
+                    if (v.name == branch)
+                        visits += v.visits
+                });
+
+                return visits;
+            },
+
+            levels(branch) {
+                let levels = 0;
+                this.$data.morgue.visits.forEach((v) => {
+                    if (v.name == branch)
+                        levels += v.levels
+                });
+
+                return levels;
             }
         },
 
@@ -724,5 +794,9 @@
 
     .stats__data.equipment {
         flex-grow: 20;
+    }
+
+    .misc > div {
+        line-height: 1.3em;
     }
 </style>
