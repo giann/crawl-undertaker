@@ -482,6 +482,20 @@
                     </div>
                 </section>
 
+                <h2 id="skills">Skills</h2>
+                <section class="morgue-section skills">
+                    <div
+                        v-for="(skill, index) in morgue.skills" :key="index"
+                        :class="skill.status">
+                        <span class="skill_value">
+                            Level <b>{{ skill.real / 10 }}</b> {{ skill.real !== skill.current ? `(${skill.current / 10})` : "" }}
+                        </span>
+                        <span class="skill__name">
+                            {{ skill.name }}
+                        </span>
+                    </div>
+                </section>
+
                 <h2 id="notes">Notes</h2>
                 <section class="morgue-section notes">
                     <div class="travel-path">
@@ -544,17 +558,17 @@
         },
 
         filters: {
-            formattedNumber: (number) => numeral(number).format("0,0"),
+            formattedNumber: number => numeral(number).format("0,0"),
 
-            formattedHours: (seconds) =>
+            formattedHours: seconds =>
                 moment()
                     .startOf('day')
                     .seconds(seconds)
                     .format('H:mm:ss'),
 
-            capitalizeFirst: (string) => string[0].toUpperCase() + string.slice(1),
+            capitalizeFirst: string => string[0].toUpperCase() + string.slice(1),
 
-            formatRegen: (number) => numeral(number / 100).format("0.00")
+            formatRegen: number => numeral(number / 100).format("0.00")
         },
 
         methods: {
@@ -906,5 +920,30 @@
 
     .inventory__item__slot {
         font-weight: bold;
+    }
+
+    .skills .max:before {
+        font-weight: bold;
+        content: "O";
+    }
+
+    .skills .focused:before {
+        font-weight: bold;
+        content: "*";
+    }
+
+    .skills .training:before {
+        font-weight: bold;
+        content: "+";
+    }
+
+    .skills .untrained:before {
+        font-weight: bold;
+        content: "-";
+    }
+
+    .skills .untrainable:before {
+        font-weight: bold;
+        content: "x";
     }
 </style>

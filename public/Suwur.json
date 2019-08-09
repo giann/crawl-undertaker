@@ -349,44 +349,44 @@
     }],
     "skills": [{
         "name": "Fighting",
-        "real": 161,
-        "current": 161,
-        "status": 161
+        "real": 270,
+        "current": 270,
+        "status": "max"
     }, {
         "name": "Armour",
         "real": 118,
         "current": 118,
-        "status": 118
+        "status": "untrained"
     }, {
         "name": "Dodging",
         "real": 153,
         "current": 153,
-        "status": 153
+        "status": "training"
     }, {
         "name": "Stealth",
         "real": 10,
         "current": 10,
-        "status": 10
+        "status": "untrained"
     }, {
         "name": "Shields",
         "real": 90,
         "current": 90,
-        "status": 90
+        "status": "untrained"
     }, {
         "name": "Unarmed Combat",
         "real": 179,
         "current": 179,
-        "status": 179
+        "status": "focused"
     }, {
         "name": "Invocations",
         "real": 80,
         "current": 80,
-        "status": 80
+        "status": "untrained"
     }, {
         "name": "Evocations",
         "real": 50,
         "current": 50,
-        "status": 50
+        "status": "untrained"
     }],
     "spells": {
         "known": [{
