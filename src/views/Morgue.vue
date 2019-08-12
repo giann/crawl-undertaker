@@ -25,6 +25,7 @@
                     <a href="#stats">Character</a>
                     <a href="#inventory">Inventory</a>
                     <a href="#skills">Skills</a>
+                    <a href="#spells">Spells</a>
                     <a href="#dungeon">Dungeon Overview</a>
                     <a href="#abilities">Mutations</a>
                     <a href="#history">Message History</a>
@@ -496,6 +497,100 @@
                     </div>
                 </section>
 
+                <h2 id="spells">Spells</h2>
+                <section class="morgue-section spells">
+                    <p v-if="morgue.stats.spells.value <= 0">
+                        You {{ morgue.hiscore ? "couldn't" : "cannot" }} memorise any spells.
+                    </p>
+                    <p v-else>
+                        You {{ morgue.hiscore ? "had" : "have" }} {{ morgue.stats.spells.value }} spell levels left.
+                    </p>
+    
+                    <p v-if="morgue.spells.known && morgue.spells.known.length > 0">
+                        You {{ morgue.hiscore ? "know" : "knew" }} the following spells:
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Your Spells</th>
+                                    <th>Type</th>
+                                    <th>Power</th>
+                                    <th>Failure</th>
+                                    <th>Level</th>
+                                    <th>Hunger</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr v-for="(spell, index) in morgue.spells.known" :key="index">
+                                    <td>
+                                        {{ spell.position }} - {{ spell.name }}
+                                    </td>
+                                    <td>
+                                        {{ spell.type }}
+                                    </td>
+                                    <td>
+                                        {{ spell.power }}
+                                    </td>
+                                    <td>
+                                        {{ spell.failure }}%
+                                    </td>
+                                    <td>
+                                        {{ spell.level }}
+                                    </td>
+                                    <td>
+                                        {{ spell.hunger }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                    <p v-else>
+                        You {{ morgue.hiscore ? "didn't" : "don't" }} know any spells.
+                    </p>
+
+                    <p v-if="morgue.spells.library && morgue.spells.library.length > 0">
+                        Your spell library {{ morgue.hiscore ? "contained" : "contains" }} the following spells:
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Spells</th>
+                                    <th>Type</th>
+                                    <th>Power</th>
+                                    <th>Failure</th>
+                                    <th>Level</th>
+                                    <th>Hunger</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr v-for="(spell, index) in morgue.spells.library" :key="index">
+                                    <td>
+                                        {{ spell.name }}
+                                    </td>
+                                    <td>
+                                        {{ spell.type }}
+                                    </td>
+                                    <td>
+                                        {{ spell.power }}
+                                    </td>
+                                    <td>
+                                        {{ spell.failure }}%
+                                    </td>
+                                    <td>
+                                        {{ spell.level }}
+                                    </td>
+                                    <td>
+                                        {{ spell.hunger }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                    <p v-else>
+                        Your spell library {{ morgue.hiscore ? "was" : "is" }} empty.
+                    </p>
+                </section>
+
                 <h2 id="notes">Notes</h2>
                 <section class="morgue-section notes">
                     <div class="travel-path">
@@ -945,5 +1040,14 @@
     .skills .untrainable:before {
         font-weight: bold;
         content: "x";
+    }
+
+    .spells table {
+        width: 100%;
+        margin: 1em;
+    }
+
+    .spells th {
+        text-align: left;
     }
 </style>
