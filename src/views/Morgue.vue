@@ -507,87 +507,41 @@
                     </p>
     
                     <p v-if="morgue.spells.known && morgue.spells.known.length > 0">
-                        You {{ morgue.hiscore ? "know" : "knew" }} the following spells:
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Your Spells</th>
-                                    <th>Type</th>
-                                    <th>Power</th>
-                                    <th>Failure</th>
-                                    <th>Level</th>
-                                    <th>Hunger</th>
-                                </tr>
-                            </thead>
+                        <b>You {{ morgue.hiscore ? "know" : "knew" }} the following spells:</b>
 
-                            <tbody>
-                                <tr v-for="(spell, index) in morgue.spells.known" :key="index">
-                                    <td>
-                                        {{ spell.position }} - {{ spell.name }}
-                                    </td>
-                                    <td>
-                                        {{ spell.type }}
-                                    </td>
-                                    <td>
-                                        {{ spell.power }}
-                                    </td>
-                                    <td>
-                                        {{ spell.failure }}%
-                                    </td>
-                                    <td>
-                                        {{ spell.level }}
-                                    </td>
-                                    <td>
-                                        {{ spell.hunger }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <sortable
+                            :thead="[
+                                { key: 'name', label: 'Your Spells' },
+                                { key: 'type', label: 'Type' },
+                                { key: 'power', label: 'Power' },
+                                { key: 'failure', label: 'Failure' },
+                                { key: 'level', label: 'Level' },
+                                { key: 'hunger', label: 'Hunger' },
+                            ]"
+                            :tbody="morgue.spells.known"
+                            sort="level"/>
                     </p>
                     <p v-else>
-                        You {{ morgue.hiscore ? "didn't" : "don't" }} know any spells.
+                        <b>You {{ morgue.hiscore ? "didn't" : "don't" }} know any spells.</b>
                     </p>
 
                     <p v-if="morgue.spells.library && morgue.spells.library.length > 0">
-                        Your spell library {{ morgue.hiscore ? "contained" : "contains" }} the following spells:
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Spells</th>
-                                    <th>Type</th>
-                                    <th>Power</th>
-                                    <th>Failure</th>
-                                    <th>Level</th>
-                                    <th>Hunger</th>
-                                </tr>
-                            </thead>
+                        <b>Your spell library {{ morgue.hiscore ? "contained" : "contains" }} the following spells:</b>
 
-                            <tbody>
-                                <tr v-for="(spell, index) in morgue.spells.library" :key="index">
-                                    <td>
-                                        {{ spell.name }}
-                                    </td>
-                                    <td>
-                                        {{ spell.type }}
-                                    </td>
-                                    <td>
-                                        {{ spell.power }}
-                                    </td>
-                                    <td>
-                                        {{ spell.failure }}%
-                                    </td>
-                                    <td>
-                                        {{ spell.level }}
-                                    </td>
-                                    <td>
-                                        {{ spell.hunger }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <sortable
+                            :thead="[
+                                { key: 'name', label: 'Spells' },
+                                { key: 'type', label: 'Type' },
+                                { key: 'power', label: 'Power' },
+                                { key: 'failure', label: 'Failure' },
+                                { key: 'level', label: 'Level' },
+                                { key: 'hunger', label: 'Hunger' },
+                            ]"
+                            :tbody="morgue.spells.library"
+                            sort="level"/>
                     </p>
                     <p v-else>
-                        Your spell library {{ morgue.hiscore ? "was" : "is" }} empty.
+                        <b>Your spell library {{ morgue.hiscore ? "was" : "is" }} empty.</b>
                     </p>
                 </section>
 
@@ -640,11 +594,16 @@
 <script>
     import { branches, gods, races, backgrounds, resistances, colors } from "../undertaker/morgue.js";
     import { darker } from "../undertaker/colors.js";
+    import Sortable from "../components/Sortable.vue";
     const numeral = require("numeral");
     const moment = require("moment");
 
     export default {
         name: "Morgue",
+
+        components: {
+            Sortable
+        },
 
         data() {
             return {
@@ -1045,9 +1004,5 @@
     .spells table {
         width: 100%;
         margin: 1em;
-    }
-
-    .spells th {
-        text-align: left;
     }
 </style>
