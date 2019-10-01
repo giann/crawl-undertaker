@@ -2,7 +2,20 @@
 
 A morgue browser and scorebaord for Dungeon Crawl Stone Soup
 
-# Ideas
+## Getting started
+
+```bash
+yarn
+yarn serve
+```
+
+Will display a test json morgue file you can find in `public/Suwur.json`.
+To view that file I recommend using [fx](https://github.com/antonmedv/fx):
+```bash
+cat public/Suwur.json | fx
+```
+
+## Ideas
 
 - Search field (free? or multiple fields?), criteria on:
     + role
